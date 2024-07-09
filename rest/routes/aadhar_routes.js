@@ -8,7 +8,7 @@ const fs = require("fs");
 const path = require("path");
 
 const aadhar_storage = multer.diskStorage({
-  destination: "aadhar-data/", // Specify the destination directory
+  destination: "/tmp/aadhar-data/", // Specify the destination directory
   filename: function (req, file, cb) {
     const name = req.body.aadharNumber.replace(/\s+/g, "_");
     const timestamp = Date.now();

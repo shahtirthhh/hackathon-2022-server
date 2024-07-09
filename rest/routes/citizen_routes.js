@@ -6,7 +6,7 @@ const auth_actions = require("../../utils/auth_actions");
 const multer = require("multer");
 
 const birth_form_storage = multer.diskStorage({
-  destination: "forms-data/birth-forms/", // Specify the destination directory
+  destination: "/tmp/forms-data/birth-forms/", // Specify the destination directory
   filename: function (req, file, cb) {
     let docName;
     if (file.fieldname === "permanentAddProofDOC") docName = "addressProof";
@@ -22,7 +22,7 @@ const birth_form_storage = multer.diskStorage({
   },
 });
 const marriage_form_storage = multer.diskStorage({
-  destination: "forms-data/marriage-forms/", // Specify the destination directory
+  destination: "/tmp/forms-data/marriage-forms/", // Specify the destination directory
   filename: function (req, file, cb) {
     let docName;
     switch (file.fieldname) {
@@ -60,7 +60,7 @@ const marriage_form_storage = multer.diskStorage({
   },
 });
 const death_form_storage = multer.diskStorage({
-  destination: "forms-data/death-forms/", // Specify the destination directory
+  destination: "/tmp/forms-data/death-forms/", // Specify the destination directory
   filename: function (req, file, cb) {
     let docName;
     switch (file.fieldname) {
