@@ -17,12 +17,13 @@ const CLERK_ROUTES = require("./rest/routes/clerk_routes");
 const app = express();
 
 const CORS_CONFIG = {
-  // origin: "http://localhost:3000", // allow requests from this origin
+  origin: "*", // allow requests from this origin
   methods: ["GET", "POST", "PATCH", "DELETE", "OPTIONS"], // allow these methods
   allowedHeaders: ["Content-Type", "Authorization"], // allow these headers
 };
-app.options("*", cors(CORS_CONFIG));
 app.use(cors(CORS_CONFIG));
+app.options("*", cors(CORS_CONFIG));
+
 app.use(express.json());
 
 app.use("/aadhar", AADHAR_ROUTES);
