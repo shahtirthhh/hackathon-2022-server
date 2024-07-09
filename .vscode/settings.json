@@ -1,0 +1,19 @@
+{
+  "sqltools.useNodeRuntime": true,
+  "sqltools.connections": [
+    {
+      "mysqlOptions": {
+        "authProtocol": "default",
+        "enableSsl": "Disabled"
+      },
+      "previewLimit": 50,
+      "server": "mysql-shahtirth-application-testing.alwaysdata.net",
+      "port": 3306,
+      "driver": "MySQL",
+      "name": "Hackathon-2022-Always-data",
+      "group": "Projects",
+      "database": "shahtirth-application-testing_hackathon-2022",
+      "username": "367214"
+    }
+  ]
+}
