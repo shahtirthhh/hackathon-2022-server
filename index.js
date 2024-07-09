@@ -4,7 +4,6 @@ const sequelize = require("./database");
 
 require("dotenv/config");
 const jwt = require("jsonwebtoken");
-const mailer = require("./utils/mailer");
 
 const { ApolloServer } = require("apollo-server-express");
 const { ApolloServerPluginDrainHttpServer } = require("apollo-server-core");
@@ -17,7 +16,13 @@ const CITIZEN_ROUTES = require("./rest/routes/citizen_routes");
 const CLERK_ROUTES = require("./rest/routes/clerk_routes");
 const app = express();
 
-app.use(cors());
+const CORS_CONFIG = {
+  // origin: "http://localhost:3000", // allow requests from this origin
+  methods: ["GET", "POST", "PATCH", "DELETE", "OPTIONS"], // allow these methods
+  allowedHeaders: ["Content-Type", "Authorization"], // allow these headers
+};
+app.options("*", cors(CORS_CONFIG));
+app.use(cors(CORS_CONFIG));
 app.use(express.json());
 
 app.use("/aadhar", AADHAR_ROUTES);
