@@ -17,6 +17,7 @@ const SlotDetails = require("../../models/slots/slot_details_model");
 const SlotsData = require("../../models/slots/slots_data_model");
 const ClerkAccount = require("../../models/clerk/clerk_account_model");
 const mailer = require("../../utils/mailer");
+const path = require("path");
 
 class CustomResponse {
   constructor(code, message, isError = true, data = undefined) {
@@ -1272,30 +1273,9 @@ const citizen_controller = {
       default:
         break;
     }
-    mailData = mailer.generate_mail(
-      "",
-      `${applicationData.holder1.split(" ")[0]}'s ${
-        applicationData.form_type
-      } certificate`,
-      ""
-    );
-    mailer.send_mail(
-      email,
-      `${applicationData.form_type} certificate for ${
-        applicationData.holder1.split(" ")[0]
-      }`,
-      mailData,
-      form_data.certificate
-    );
     res
       .status(200)
-      .send(
-        new CustomResponse(
-          "CERTIFICATE_SENT",
-          `Certificate sent to ${email}`,
-          false
-        )
-      );
+      .sendFile(path.join(__dirname, "../../", form_data.certificate));
   },
 };
 
