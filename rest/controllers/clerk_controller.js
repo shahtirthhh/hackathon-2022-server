@@ -29,12 +29,9 @@ class CustomResponse {
 const imageToBase64 = (filePath) => {
   return new Promise((resolve, reject) => {
     // Check if file exists
-    console.log(filePath);
-    const absoluteFilePath = path.resolve(filePath);
+    let absoluteFilePath = path.resolve(filePath);
+    absoluteFilePath = absoluteFilePath.replace(/\\/g, "/");
     console.log(absoluteFilePath);
-
-    // Log the file path for debugging
-    console.log("Attempting to read file:", absoluteFilePath);
 
     // Check if file exists
     if (!fs.existsSync(absoluteFilePath)) {
