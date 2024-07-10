@@ -706,14 +706,14 @@ const clerk_controller = {
         .send(new CustomResponse("FAKE_REQ", "Fake requests are declined"));
     let certi_path;
     let mailData;
+    let name;
     switch (form_type) {
       case "BIRTH":
         const birth_form = await BirthForm.findByPk(application.form_id);
         const mother = await Aadhar.findByPk(birth_form.motherAadhar);
         const father = await Aadhar.findByPk(birth_form.fatherAadhar);
-        certi_path = `certificates/birth/${
-          application.holders[0]
-        }_${Date.now()}.pdf`;
+        name = application.holders[0].replace(/ /g, "_");
+        certi_path = `certificates/birth/${name}_${Date.now()}.pdf`;
         generate_birth_certificate("templates/birth_template.pdf", certi_path, {
           district: application.district,
           name: application.holders[0],
@@ -761,9 +761,8 @@ const clerk_controller = {
         const marriage_form = await MarriageForm.findByPk(application.form_id);
         const groom = await Aadhar.findByPk(marriage_form.groomAadhar);
         const bride = await Aadhar.findByPk(marriage_form.brideAadhar);
-        certi_path = `certificates/marriage/${
-          application.holders[0]
-        }_${Date.now()}.pdf`;
+        name = application.holders[0].replace(/ /g, "_");
+        certi_path = `certificates/birth/${name}_${Date.now()}.pdf`;
         generate_marriage_certificate(
           "templates/marriage_template.pdf",
           certi_path,
@@ -811,9 +810,8 @@ const clerk_controller = {
         break;
       case "DEATH":
         const death_form = await DeathForm.findByPk(application.form_id);
-        certi_path = `certificates/death/${
-          application.holders[0]
-        }_${Date.now()}.pdf`;
+        name = application.holders[0].replace(/ /g, "_");
+        certi_path = `certificates/birth/${name}_${Date.now()}.pdf`;
         const deceased = await Aadhar.findByPk(death_form.deceasedAadhar);
         const filler = await Aadhar.findByPk(death_form.fillerAadhar);
         generate_death_certificate("templates/death_template.pdf", certi_path, {
