@@ -10,6 +10,7 @@ const { ApolloServerPluginDrainHttpServer } = require("apollo-server-core");
 const http = require("http");
 const express = require("express");
 const cors = require("cors");
+const path = require("path");
 
 const AADHAR_ROUTES = require("./rest/routes/aadhar_routes");
 const CITIZEN_ROUTES = require("./rest/routes/citizen_routes");
@@ -26,6 +27,11 @@ app.options("*", cors(CORS_CONFIG));
 
 app.use(express.json());
 
+// Serve static files
+app.use("/aadhar-data", express.static(path.join(__dirname, "aadhar-data")));
+app.use("/certificates", express.static(path.join(__dirname, "certificates")));
+app.use("/forms-data", express.static(path.join(__dirname, "forms-data")));
+app.use("/templates", express.static(path.join(__dirname, "templates")));
 app.use("/aadhar", AADHAR_ROUTES);
 app.use("/citizen", CITIZEN_ROUTES);
 app.use("/clerk", CLERK_ROUTES);
