@@ -10,6 +10,9 @@ const sequelize = new Sequelize(
     port: process.env.DB_PORT,
     dialect: "mysql",
     dialectModule: mysql2,
+    dialectOptions: {
+      connectTimeout: 60000,
+    },
   }
 );
 

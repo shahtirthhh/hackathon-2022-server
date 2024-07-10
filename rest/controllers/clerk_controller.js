@@ -29,18 +29,26 @@ class CustomResponse {
 const imageToBase64 = (filePath) => {
   return new Promise((resolve, reject) => {
     // Check if file exists
-    if (!fs.existsSync(filePath)) {
-      return reject(new Error("File does not exist"));
+    console.log(filePath);
+    const absoluteFilePath = path.resolve(filePath);
+    console.log(absoluteFilePath);
+
+    // Log the file path for debugging
+    console.log("Attempting to read file:", absoluteFilePath);
+
+    // Check if file exists
+    if (!fs.existsSync(absoluteFilePath)) {
+      return reject(new Error("File does not exist: " + absoluteFilePath));
     }
 
     // Read the file
-    fs.readFile(filePath, (err, data) => {
+    fs.readFile(absoluteFilePath, (err, data) => {
       if (err) {
         return reject(err);
       }
 
       // Determine the image format
-      const extension = path.extname(filePath).substring(1);
+      const extension = path.extname(absoluteFilePath).substring(1);
       // Convert to Base64 string
       const base64String = data.toString("base64");
       // Concatenate with the appropriate data URL scheme
