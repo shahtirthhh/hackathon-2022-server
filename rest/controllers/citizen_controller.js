@@ -1273,9 +1273,7 @@ const citizen_controller = {
       default:
         break;
     }
-    res
-      .status(200)
-      .sendFile(path.join(__dirname, "../../", form_data.certificate));
+    res.status(200).sendFile(path.resolve(form_data.certificate));
   },
 };
 

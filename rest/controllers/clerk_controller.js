@@ -764,8 +764,8 @@ const clerk_controller = {
         name = application.holders[0].replace(/ /g, "_");
         certi_path = `certificates/birth/${name}_${Date.now()}.pdf`;
         generate_marriage_certificate(
-          "templates/marriage_template.pdf",
-          certi_path,
+          path.resolve("templates/marriage_template.pdf"),
+          path.resolve(certi_path),
           {
             district: application.district,
             groom: `${groom.firstName} ${groom.middleName} ${groom.lastName}`,
@@ -796,7 +796,7 @@ const clerk_controller = {
             application.holders[0].split(" ")[0]
           } has been issued. You can get it anytime from the dashboard.`,
           mailData,
-          certi_path
+          path.resolve(certi_path)
         );
         return res
           .status(201)
