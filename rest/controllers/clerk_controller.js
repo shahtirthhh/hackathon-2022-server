@@ -563,7 +563,7 @@ const clerk_controller = {
       application.application_id
     );
     const citizen = await Aadhar.findByPk(citizen_application.citizen_id);
-    citizen.photo = await imageToBase64("aadhar-data\\" + citizen.photo);
+    citizen.photo = await imageToBase64("aadhar-data/" + citizen.photo);
     const all_data = { citizen_application, citizen };
     switch (citizen_application.form_type) {
       case "BIRTH":
@@ -583,13 +583,13 @@ const clerk_controller = {
           all_data.form_data.motherAadhar
         );
         all_data.mother.photo = await imageToBase64(
-          "aadhar-data\\" + all_data.mother.photo
+          "aadhar-data/" + all_data.mother.photo
         );
         all_data.father = await Aadhar.findByPk(
           all_data.form_data.fatherAadhar
         );
         all_data.father.photo = await imageToBase64(
-          "aadhar-data\\" + all_data.father.photo
+          "aadhar-data/" + all_data.father.photo
         );
         break;
       case "MARRIAGE":
@@ -620,10 +620,10 @@ const clerk_controller = {
         all_data.groom = await Aadhar.findByPk(all_data.form_data.groomAadhar);
         all_data.bride = await Aadhar.findByPk(all_data.form_data.brideAadhar);
         all_data.groom.photo = await imageToBase64(
-          "aadhar-data\\" + all_data.groom.photo
+          "aadhar-data/" + all_data.groom.photo
         );
         all_data.bride.photo = await imageToBase64(
-          "aadhar-data\\" + all_data.bride.photo
+          "aadhar-data/" + all_data.bride.photo
         );
         break;
       case "DEATH":
@@ -634,13 +634,13 @@ const clerk_controller = {
           all_data.form_data.deceasedAadhar
         );
         all_data.deceased.photo = await imageToBase64(
-          "aadhar-data\\" + all_data.deceased.photo
+          "aadhar-data/" + all_data.deceased.photo
         );
         all_data.filler = await Aadhar.findByPk(
           all_data.form_data.fillerAadhar
         );
         all_data.filler.photo = await imageToBase64(
-          "aadhar-data\\" + all_data.filler.photo
+          "aadhar-data/" + all_data.filler.photo
         );
         all_data.form_data.crematoriumDeclaration = await imageToBase64(
           all_data.form_data.crematoriumDeclaration
