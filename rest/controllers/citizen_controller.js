@@ -1261,28 +1261,28 @@ const citizen_controller = {
         .send(new CustomResponse("FAKE_REQ", "Fake requests are declined"));
     switch (applicationData.form_type) {
       case "BIRTH":
-        form_data = await BirthForm.findByPk(application.form_id);
+        form_data = await BirthForm.findByPk(applicationData.form_id);
         break;
       case "MARRIAGE":
-        form_data = await MarriageForm.findByPk(application.form_id);
+        form_data = await MarriageForm.findByPk(applicationData.form_id);
         break;
       case "DEATH":
-        form_data = await DeathForm.findByPk(application.form_id);
+        form_data = await DeathForm.findByPk(applicationData.form_id);
         break;
       default:
         break;
     }
     mailData = mailer.generate_mail(
       "",
-      `${application.holders[0].split(" ")[0]}'s ${
-        application.form_type
+      `${applicationData.holder1.split(" ")[0]}'s ${
+        applicationData.form_type
       } certificate`,
       ""
     );
     mailer.send_mail(
       email,
-      `${application.form_type} certificate for ${
-        application.holders[0].split(" ")[0]
+      `${applicationData.form_type} certificate for ${
+        applicationData.holder1.split(" ")[0]
       }`,
       mailData,
       form_data.certificate
