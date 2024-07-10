@@ -65,7 +65,7 @@ startApolloServer(app, httpServer);
 
 const connect_to_db = async () => {
   try {
-    // await sequelize.authenticate();
+    await sequelize.authenticate();
     await sequelize.sync();
 
     httpServer.listen(process.env.PORT);
